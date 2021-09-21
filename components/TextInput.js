@@ -32,7 +32,7 @@ function CustomTextInput({ icon, onOptionPress, option, ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyle.colors.lightestPrimary,
-    borderRadius: 25,
+    borderRadius: 5,
     flexDirection: "row",
     padding: 10,
     width: "100%",

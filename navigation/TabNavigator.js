@@ -4,7 +4,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Account from "../screens/Account";
 import Dashboard from "../screens/Dashboard";
-import Transaction from "../screens/Transaction";
+import Transactions from "../screens/Transactions";
+import HomeTabButton from "./HomeTabButton";
+import routes from "./routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +19,8 @@ const TabNavigator = () => {
       initialRouteName="Dashboard"
     >
       <Tab.Screen
-        name="transaction"
-        component={Transaction}
+        name="Transaction"
+        component={Transactions}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -32,18 +34,21 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Dashboard"
         component={Dashboard}
-        options={{
+        options={({ navigation }) => ({
+          tabBarButton: () => (
+            <HomeTabButton onPress={() => navigation.navigate(routes.HOME)} />
+          ),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Account"
         component={Account}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="menu" color={color} size={size} />
           ),
         }}
       />

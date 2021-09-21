@@ -15,7 +15,10 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "This app uses the FaceID to authenticate and confirm transactions."
+      }
     },
     "android": {
       "adaptiveIcon": {

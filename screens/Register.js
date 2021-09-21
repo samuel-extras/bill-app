@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Form, FormField, SubmitButton } from "../components/Forms";
 
 import SafeArea from "../components/SafeArea";
+import routes from "../navigation/routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email").trim(),
@@ -15,14 +16,17 @@ const validationSchema = Yup.object().shape({
     .label("Password confirmation"),
 });
 
-function Register(props) {
+function Register({ navigation }) {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   return (
     <SafeArea style={styles.container}>
       <Image style={styles.logo} source={require("../assets/bg-img-9.png")} />
       <Form
         initialValues={{ email: "", password: "" }}
-        onSubmit={(value) => console.log(value)}
+        onSubmit={(value) => {
+          console.log(value);
+          navigation.navigate(routes.TABS);
+        }}
         validationSchema={validationSchema}
       >
         <FormField
@@ -58,7 +62,7 @@ function Register(props) {
           onOptionPress={() => setSecureTextEntry(!secureTextEntry)}
         />
 
-        <SubmitButton title="Login" />
+        <SubmitButton title="Register" />
       </Form>
       <View
         style={{
@@ -67,7 +71,7 @@ function Register(props) {
         }}
       >
         <Text> Already have an account? </Text>
-        <Text> Log in</Text>
+        <Text onPress={() => navigation.navigate(routes.LOGIN)}> Log in</Text>
       </View>
     </SafeArea>
   );

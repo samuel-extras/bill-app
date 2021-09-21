@@ -14,4 +14,5 @@ export default {
   mediumGray: "#94A3B8",
   danger: "#EF4444",
   dark: "#475569",
+  success: "rgba(3, 201, 169, 0.8)",
 };

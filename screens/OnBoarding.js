@@ -1,42 +1,52 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../config/colors";
 import Swiper from "../views/Swiper";
 
 const OnBoarding = () => {
+  const navigation = useNavigation();
   return (
-    <Swiper>
+    <Swiper navigation={navigation}>
       {/* First screen */}
       <View style={[styles.slide, { backgroundColor: "#fff" }]}>
-        <Icon name="ios-nutrition" {...iconStyles} />
-        <Text style={styles.header}>EAT</Text>
+        <Image
+          source={require("../assets/undraw1.png")}
+          style={styles.image}
+          {...iconStyles}
+        />
+        <Text style={styles.header}>Wallet</Text>
         <Text style={styles.text}>
-          Good nutrition is an important part of leading a healthy lifestyle
+          ReactJS is a trustworthy javascript library that enhances the speed of
+          JavaScript.
         </Text>
       </View>
 
       {/* Second screen */}
       <View style={[styles.slide, { backgroundColor: "#fff" }]}>
-        <Icon name="ios-cloud-upload" {...iconStyles} />
-        <Text style={styles.header}>PRAY</Text>
+        <Image
+          source={require("../assets/undraw2.png")}
+          style={styles.image}
+          {...iconStyles}
+        />
+        <Text style={styles.header}>Bill Payment</Text>
         <Text style={styles.text}>
-          Prayer is one of the most important things a Christian can do
+          ReactJS is a trustworthy javascript library that enhances the speed of
+          JavaScript and
         </Text>
       </View>
       {/* Third screen */}
       <View style={[styles.slide, { backgroundColor: "#fff" }]}>
         <Image
-          source={require("../assets/bg-img-9.png")}
-          style={{
-            width: 100,
-            height: 100,
-            resizeMode: "contain",
-          }}
+          source={require("../assets/undraw3.png")}
+          style={styles.image}
           {...iconStyles}
         />
-        <Text style={styles.header}>LOVE</Text>
-        <Text style={styles.text}>Where there is love there is life</Text>
+        <Text style={styles.header}>Easy Recharge</Text>
+        <Text style={styles.text}>
+          The Retail Banking Biometrics Confidence Report concludes that
+          customers not only believe
+        </Text>
       </View>
     </Swiper>
   );
@@ -53,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1, // Take up all screen
     justifyContent: "center", // Center vertically
     alignItems: "center", // Center horizontally
+    top: -30,
   },
   // Header styles
   header: {
@@ -60,10 +71,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginVertical: 15,
+    textTransform: "uppercase",
   },
+  image: {
+    width: "80%",
+    height: "40%",
+    resizeMode: "contain",
+  },
+
   // Text below header
   text: {
-    color: colors.primary,
+    color: colors.black,
     fontSize: 18,
     marginHorizontal: 40,
     textAlign: "center",

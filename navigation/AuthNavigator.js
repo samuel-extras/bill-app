@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Welcome from "../screens/Welcome";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import TabNavigator from "./TabNavigator";
+import OnBoarding from "../screens/OnBoarding";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +16,11 @@ const AuthNavigator = () => {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} />
     </Stack.Navigator>
   );
 };

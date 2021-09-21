@@ -3,6 +3,7 @@ import { ImageBackground, Text, View, StyleSheet, Image } from "react-native";
 
 import Button from "../components/Button";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 const Welcome = ({ navigation }) => {
   return (
@@ -16,11 +17,19 @@ const Welcome = ({ navigation }) => {
         <Text style={styles.tagLine}>Best Bill App You Can See</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="login" onPress={() => navigation.navigate("Login")} />
+        <Button
+          title="login"
+          onPress={() => navigation.navigate(routes.LOGIN)}
+        />
         <Button
           title="Register"
           color="transparent"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate(routes.REGISTER)}
+          style={{
+            borderColor: colors.white,
+            elevation: 0,
+          }}
+          bordered
         />
       </View>
     </ImageBackground>

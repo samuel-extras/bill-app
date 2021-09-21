@@ -9,10 +9,14 @@ import {
 } from "react-native";
 import Button from "../components/Button";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 const { width, height } = Dimensions.get("window");
 
 export default class Swiper extends Component {
+  constructor(props) {
+    super(props);
+  }
   static defaultProps = {
     // Arrange screens horizontally
     horizontal: true,
@@ -143,32 +147,30 @@ export default class Swiper extends Component {
    * Swipe one slide forward
    */
   swipe = () => {
+    this.props.navigation.navigate(routes.WELCOME);
+
     // Ignore if already scrolling or if there is less than 2 slides
-    if (this.internals.isScrolling || this.state.total < 2) {
-      return;
-    }
-
-    const state = this.state,
-      diff = this.state.index + 1,
-      x = diff * state.width,
-      y = 0;
-
-    // Call scrollTo on scrollView component to perform the swipe
-    this.scrollView && this.scrollView.scrollTo({ x, y, animated: true });
-
-    // Update internal scroll state
-    this.internals.isScrolling = true;
-
-    // Trigger onScrollEnd manually on android
-    if (Platform.OS === "android") {
-      setImmediate(() => {
-        this.onScrollEnd({
-          nativeEvent: {
-            position: diff,
-          },
-        });
-      });
-    }
+    // if (this.internals.isScrolling || this.state.total < 2) {
+    //   return;
+    // }
+    // const state = this.state,
+    //   diff = this.state.index + 1,
+    //   x = diff * state.width,
+    //   y = 0;
+    // // Call scrollTo on scrollView component to perform the swipe
+    // this.scrollView && this.scrollView.scrollTo({ x, y, animated: true });
+    // // Update internal scroll state
+    // this.internals.isScrolling = true;
+    // // Trigger onScrollEnd manually on android
+    // if (Platform.OS === "android") {
+    //   setImmediate(() => {
+    //     this.onScrollEnd({
+    //       nativeEvent: {
+    //         position: diff,
+    //       },
+    //     });
+    //   });
+    // }
   };
 
   /**
@@ -241,28 +243,20 @@ export default class Swiper extends Component {
           // Show this button on the last screen
           // TODO: Add a handler that would send a user to your app after onboarding is complete
           <Text
-            onPress={() => console.log("Send me the app")}
+            onPress={() => this.props.navigation.navigate(routes.WELCOME)}
             style={{
               backgroundColor: "transparent",
               fontSize: 18,
               fontWeight: "bold",
-              color: colors.white,
+              color: colors.primary,
             }}
           >
             Start Now
           </Text>
         ) : (
           // Or this one otherwise
-          <Text
-            onPress={() => this.swipe()}
-            style={{
-              backgroundColor: "transparent",
-              fontSize: 18,
-              fontWeight: "bold",
-              color: colors.white,
-            }}
-          >
-            Skip
+          <Text onPress={() => this.swipe()} style={styles.skip}>
+            skip
           </Text>
         )}
       </View>
@@ -273,6 +267,8 @@ export default class Swiper extends Component {
    * Render the component
    */
   render = ({ children } = this.props) => {
+    // console.log(this.props.navigation.navigate("Login"));
+
     return (
       <View style={[styles.container, styles.fullScreen]}>
         {/* Render screens */}
@@ -326,7 +322,13 @@ const styles = StyleSheet.create({
   },
   // Active dot
   activeDot: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.primary,
+  },
+  skip: {
+    backgroundColor: "transparent",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.primary,
   },
   // Button wrapper
   buttonWrapper: {
