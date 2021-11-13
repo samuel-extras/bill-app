@@ -4,8 +4,10 @@ export default Object.freeze({
   REGISTER: "Register",
   TABS: "TabNavigator",
   WELCOME: "Welcome",
-  HOME: "Dashboard",
+  HOME: "Home",
   TRANSACTIONS: "Transactions",
   ACCOUNT: "Account",
   FORGET: "Forget-Password",
+  SERVICE: "ServicesNavigator",
+  AIRTIME: "Airtime"
 });

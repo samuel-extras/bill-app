@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Account from "../screens/Account";
-import Dashboard from "../screens/Dashboard";
+import Home from "../screens/Home";
 import Transactions from "../screens/Transactions";
 import HomeTabButton from "./HomeTabButton";
 import routes from "./routes";
@@ -15,13 +15,17 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
       }}
-      initialRouteName="Dashboard"
+      initialRouteName="Home"
     >
       <Tab.Screen
-        name="Transaction"
+        name="Transaction History"
         component={Transactions}
         options={{
+          headerShown: true,
+          headerTitleAlign: "center",
+
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="cash-multiple"
@@ -32,8 +36,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Dashboard"
-        component={Dashboard}
+        name="Home"
+        component={Home}
         options={({ navigation }) => ({
           tabBarButton: () => (
             <HomeTabButton onPress={() => navigation.navigate(routes.HOME)} />

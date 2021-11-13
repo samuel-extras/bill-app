@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, SectionList } from "react-native";
+  import { View, StyleSheet, Text, SectionList } from "react-native";
 import SafeArea from "../components/SafeArea";
 import SearchBar from "../components/SearchBar";
 import TransactionCard from "../components/TransactionCard";
@@ -17,17 +17,17 @@ const DATA = [
         title: "MTN 2349033728282",
         time: "12:47 AM",
         amount: "400",
-        type: "airtime",
+        type: "Borrow",
         provider: "mtn",
         inner: "#f7c600",
         outer: "#f6ecce",
         image: mtn,
       },
       {
-        title: "Travins Giores",
+        title: "",
         time: "12:47 AM",
         amount: "28,000",
-        type: "credit",
+        type: "intrest",
         inner: colors.primary,
         outer: colors.lighterPrimary,
         icon: "location-arrow",

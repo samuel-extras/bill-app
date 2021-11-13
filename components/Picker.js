@@ -9,11 +9,10 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyle from "../config/styles";
-import CustomText from "./Text";
-import ScreenSafeArea from "./ScreenSafeArea";
+import Text from "./Text";
 import PickerItem from "./PickerItem";
+import colors from "../config/colors";
 
-const items = [];
 
 function Picker({
   icon,
@@ -28,7 +27,7 @@ function Picker({
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <>
+    <React.Fragment>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={[styles.container, { width }]}>
           <MaterialCommunityIcons
@@ -38,14 +37,14 @@ function Picker({
             color={defaultStyle.colors.medium}
           />
           {selectedItem ? (
-            <CustomText style={styles.text}>{selectedItem.label} </CustomText>
+            <Text style={styles.text}>{selectedItem.type} </Text>
           ) : (
-            <CustomText style={styles.placeholder}>{placeholder} </CustomText>
+            <Text style={styles.placeholder}>{placeholder} </Text>
           )}
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
-            color={defaultStyle.colors.medium}
+            color={defaultStyle.colors.mediumGray}
           />
         </View>
       </TouchableWithoutFeedback>
@@ -53,12 +52,12 @@ function Picker({
         <Button title="Close" onPress={() => setModalVisible(false)} />
         <FlatList
           data={items}
-          keyExtractor={(item) => item.value.toString()}
+          keyExtractor={(item) => item.i_d}
           numColumns={numColumns}
           renderItem={({ item }) => (
             <PickerItemComponent
               item={item}
-              label={item.label}
+              label={item.type}
               onPress={() => {
                 setModalVisible(false);
                 onSelectItem(item);
@@ -67,13 +66,13 @@ function Picker({
           )}
         />
       </Modal>
-    </>
+    </React.Fragment>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultStyle.colors.light,
-    borderRadius: 25,
+    backgroundColor: defaultStyle.colors.lightestPrimary,
+    borderRadius: 5,
     flexDirection: "row",
     padding: 10,
     width: "100%",
@@ -89,6 +88,7 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     flex: 1,
+    color: colors.mediumGray,
   },
 });
 

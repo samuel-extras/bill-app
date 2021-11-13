@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 function Login({ navigation }) {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const navigateToHome = () => {
-    navigation.navigate(routes.TABS);
+    navigation.navigate(routes.SERVICE);
   };
   return (
     <SafeArea style={styles.container}>
@@ -71,7 +71,7 @@ function Login({ navigation }) {
       </View>
       <TouchableOpacity
         style={{ height: 50, width: 50, position: "absolute", bottom: "20%" }}
-        onPress={() => biometric(navigateToHome  )}
+        onPress={() => biometric(navigateToHome)}
       >
         <MaterialCommunityIcons
           name="fingerprint"

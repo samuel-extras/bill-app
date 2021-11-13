@@ -1,8 +1,9 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, StyleSheet, FlatList } from "react-native";
 import ListItem from "./ListItem";
 
-const ListView = ({ items }) => {
+const ListView = ({ items, navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -13,7 +14,7 @@ const ListView = ({ items }) => {
           <ListItem
             item={item}
             label={item.label}
-            onPress={() => console.log(item)}
+            onPress={() => navigation.navigate(item.label)}
           />
         )}
       />

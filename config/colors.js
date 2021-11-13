@@ -15,4 +15,5 @@ export default {
   danger: "#EF4444",
   dark: "#475569",
   success: "rgba(3, 201, 169, 0.8)",
+  blue: "rgba(65, 131, 215, 0.4)",
 };

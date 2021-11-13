@@ -3,9 +3,15 @@ import { TextInput, View, StyleSheet, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyle from "../config/styles";
 
-function CustomTextInput({ icon, onOptionPress, option, ...otherProps }) {
+function CustomTextInput({
+  icon,
+  onOptionPress,
+  option,
+  width = "100%",
+  ...otherProps
+}) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: width }]}>
       <MaterialCommunityIcons
         name={icon}
         size={20}
@@ -35,7 +41,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: "row",
     padding: 10,
-    width: "100%",
     marginVertical: 10,
     alignItems: "center",
   },
