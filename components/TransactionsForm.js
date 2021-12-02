@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Form, FormField } from "./Forms";
 import SafeArea from "./SafeArea";
 import FormPicker from "./Forms/FormPicker";
+import RecentTransactions from "./RecentTransactions";
 
 const validationSchema = Yup.object().shape({
   customerID: Yup.string().required().min(1).label("Customer's ID"),
@@ -11,9 +12,16 @@ const validationSchema = Yup.object().shape({
   provider: Yup.object().required().nullable().label("Provider"),
 });
 
-function TransactionsForm({ providers, placeholder = "Customer ID" }) {
+function TransactionsForm({
+  recents,
+  labels,
+  providers,
+  placeholder = "Customer ID",
+}) {
   return (
     <SafeArea style={styles.container}>
+      {recents && <RecentTransactions data={recents} />}
+
       <Form
         initialValues={{
           customerID: "",
@@ -23,23 +31,26 @@ function TransactionsForm({ providers, placeholder = "Customer ID" }) {
         onSubmit={(value) => console.log(value)}
         validationSchema={validationSchema}
       >
-        <FormPicker
-          items={providers}
-          name="provider"
-          placeholder="Choose a Provider"
-          
-        />
-
-        <FormField
-          maxLength={255}
-          name="customerID"
-          placeholder={placeholder}
-        />
         <FormField
           keyboardType="numeric"
           maxLength={9}
           name="amount"
           placeholder="₦0.00"
+          label="Amount"
+          label2="Account Balance: ₦28,096.36 "
+        />
+        <FormPicker
+          items={providers}
+          name="provider"
+          placeholder="Choose a Provider"
+          label={labels[0]}
+        />
+
+        <FormField
+          maxLength={255}
+          name="Beneficiary"
+          placeholder={placeholder}
+          label={labels[1]}
         />
       </Form>
     </SafeArea>

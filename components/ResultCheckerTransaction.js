@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 import { Form, FormField } from "./Forms";
 import SafeArea from "./SafeArea";
+
 import FormPicker from "./Forms/FormPicker";
+import RadioButtonRN from "radio-buttons-react-native";
+import Text from "./Text";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
-  customerID: Yup.string().required().min(1).label("Customer's ID"),
-  amount: Yup.number().required().min(100).max(1000000).label("Amount"),
+  reciever: Yup.string().required().min(1).label("Reciever"),
+  quantity: Yup.number().required().min(1).max(100).label("Quantity"),
   provider: Yup.object().required().nullable().label("Provider"),
 });
-
+const data = [
+  {
+    label: "Email",
+  },
+  {
+    label: "Phone number",
+  },
+];
 function TransactionsForm({ providers }) {
+  const [reciever, setReciever] = useState("");
+
   return (
     <SafeArea style={styles.container}>
       <Form
         initialValues={{
-          customerID: "",
-          amount: "",
+          reciever: "",
+          quantity: "",
           provider: null,
         }}
         onSubmit={(value) => console.log(value)}
@@ -34,20 +47,37 @@ function TransactionsForm({ providers }) {
           name="quantity"
           placeholder="Enter quantity"
         />
-        <FormPicker
-          items={[
-            { i_d: "1", type: "Email" },
-            { i_d: "2", type: "Phone Number" },
-          ]}
-          name="medium"
-          placeholder="Choose a receiving medium"
-        />
-        <FormField
-          keyboardType="numeric"
-          maxLength={3}
-          name="quantity"
-          placeholder="1"
-        />
+        <View>
+          <Text style={{ fontSize: 18, color: colors.mediumGray }}>
+            Send Card To:
+          </Text>
+          <RadioButtonRN
+            data={data}
+            selectedBtn={(e) => setReciever(e.label)}
+            circleSize={10}
+            activeColor={colors.primary}
+            boxDeactiveBgColor={colors.lightestPrimary}
+            boxActiveBgColor={colors.lightestPrimary}
+            textColor={colors.mediumGray}
+            boxStyle={{ borderWidth: 0 }}
+            textStyle={{ fontSize: 18 }}
+            style={{
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "space-between",
+            }}
+            boxStyle={{ width: "48%" }}
+          />
+          {reciever ? (
+            <FormField
+              keyboardType={reciever === "Phone number" ? "numeric" : "default"}
+              name="reciever"
+              placeholder={`Enter ${reciever}`}
+            />
+          ) : (
+            <View />
+          )}
+        </View>
       </Form>
     </SafeArea>
   );

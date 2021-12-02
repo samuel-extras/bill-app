@@ -2,11 +2,13 @@ import React from "react";
 import { useFormikContext } from "formik";
 import { ErrorMessage } from ".";
 import Picker from "../Picker";
+import Text from "../Text";
 
 const FormPicker = ({
   items,
   name,
   numColumns,
+  label,
   PickerItemComponent,
   placeholder,
   width,
@@ -15,6 +17,7 @@ const FormPicker = ({
 
   return (
     <React.Fragment>
+      {label && <Text style={{ fontSize: 14 }}>{label}</Text>}
       <Picker
         items={items}
         numColumns={numColumns}

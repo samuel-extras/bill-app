@@ -35,14 +35,9 @@ const Separator = () => {
   );
 };
 const ResultChecker = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <View style={styles.container}>
-      <TransactionsForm
-        providers={resultChecker}
-        placeholder="Beneficiary Phone Number"
-      />
+      <TransactionsForm providers={resultChecker} />
     </View>
   );
 };

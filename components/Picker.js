@@ -13,7 +13,6 @@ import Text from "./Text";
 import PickerItem from "./PickerItem";
 import colors from "../config/colors";
 
-
 function Picker({
   icon,
   onSelectItem,
@@ -52,12 +51,12 @@ function Picker({
         <Button title="Close" onPress={() => setModalVisible(false)} />
         <FlatList
           data={items}
-          keyExtractor={(item) => item.i_d}
+          keyExtractor={(item) => item.i_d || item.value.toString()}
           numColumns={numColumns}
           renderItem={({ item }) => (
             <PickerItemComponent
               item={item}
-              label={item.type}
+              label={item.type || item.label}
               onPress={() => {
                 setModalVisible(false);
                 onSelectItem(item);

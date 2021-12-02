@@ -64,20 +64,23 @@ const Home = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.upper}>
           <View style={styles.header}>
-            <Image
-              source={require("../assets/bg-img-9.png")}
-              style={styles.logo}
-            />
-            <Text style={styles.welcome}>Welcome</Text>
-            <View style={{}}>
-              <TouchableOpacity>
-                <MaterialCommunityIcons
-                  name="bell"
-                  size={20}
-                  color={colors.lightestPrimary}
-                />
-              </TouchableOpacity>
+            <View>
+              <Text style={styles.welcome}>Hi, Timothy</Text>
+              <Text style={styles.headerText}>
+                what do you want to do today?
+              </Text>
             </View>
+            <TouchableOpacity style={styles.imageContainer}>
+              <MaterialCommunityIcons
+                size={50}
+                name="account"
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.balance}>
+            <Text style={styles.balanceText}>Account Balance</Text>
+            <Text style={styles.balanceAmount}>₦14,530</Text>
           </View>
         </View>
         <View style={styles.lower}>
@@ -86,28 +89,27 @@ const Home = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.card}>
-          <View style={styles.activeBtn}>
-            <LinearGradient
-              colors={["rgba(3, 201, 169, 0.2)", "rgba(3, 201, 169, 0.2)"]}
-              style={{
-                padding: 2,
-                borderRadius: 6,
-              }}
-            >
-              <Text style={styles.active}> Active </Text>
-            </LinearGradient>
-          </View>
-          <View style={styles.balance}>
-            <Text style={styles.currency}>₦</Text>
-            <Text style={styles.amount}>75,000.38</Text>
-          </View>
           <View style={styles.fundBtn}>
             <CustomButton
-              title="Fund Wallet"
-              color="blue"
-              textColor={colors.primary}
+              title="Add Money"
+              color="white"
+              icon="plus-circle"
+              textColor={colors.secondary}
               bordered
-              style={{ height: "50%", width: "42%", elevation: 0 }}
+              style={{
+                height: "65%",
+                width: "50%",
+                elevation: 0,
+              }}
+              onPress={() => navigation.navigate("Fund Wallet")}
+            />
+            <CustomButton
+              title="Send Money"
+              icon="send-circle"
+              color="white"
+              textColor={colors.secondary}
+              bordered
+              style={{ height: "65%", width: "50%", elevation: 0 }}
               onPress={() => navigation.navigate("Fund Wallet")}
             />
           </View>
@@ -121,48 +123,41 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    padding: 20,
+    paddingHorizontal: 20,
+    height: "15%",
   },
-  active: {
-    color: "rgba(3, 201, 169, 1)",
-    fontSize: 16,
+  balanceText: {
+    color: "white",
+    fontSize: 14,
   },
-  activeBtn: {
-    padding: 10,
-    borderRadius: 2,
-    height: "20%",
-    width: "auto",
-    alignItems: "flex-end",
-    justifyContent: "flex-start",
-  },
-  amount: {
-    color: colors.secondary,
-    fontSize: 50,
-    fontWeight: "400",
-    marginLeft: 12,
+
+  balanceAmount: {
+    color: colors.white,
+    fontSize: 28,
+    fontWeight: "bold",
   },
 
   balance: {
-    height: "50%",
+    padding: 20,
+    justifyContent: "center",
+    height: "10%",
   },
 
   body: {
     height: "80%",
     width: "100%",
-    bottom: 0,
-    position: "absolute",
   },
   card: {
-    height: "22%",
+    height: "10%",
     width: "94%",
-    paddingHorizontal: "6%",
-    paddingVertical: "3%",
     position: "absolute",
     borderRadius: 5,
     borderColor: `rgba(209, 213, 219, 0.8)`,
     borderWidth: 1,
-    top: "23%",
-    backgroundColor: colors.lightestPrimary,
+    top: "25%",
+    backgroundColor: colors.white,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardInner: {
     height: "100%",
@@ -186,8 +181,10 @@ const styles = StyleSheet.create({
   },
 
   fundBtn: {
-    height: "30%",
+    flexDirection: "row",
+    width: "92%",
     justifyContent: "center",
+    alignItems: "center",
   },
 
   logo: {
@@ -199,10 +196,8 @@ const styles = StyleSheet.create({
   lower: {
     backgroundColor: colors.white,
     position: "absolute",
-    height: "65%",
+    height: "70%",
     width: "100%",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
     bottom: 0,
     alignItems: "center",
     justifyContent: "center",
@@ -211,7 +206,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     width: "100%",
     flex: 1,
-    height: "50%",
+    height: "40%",
     top: 0,
   },
   welcome: {
@@ -219,6 +214,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     elevation: 1,
+  },
+
+  imageContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: colors.white,
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+  },
+  headerText: {
+    color: colors.white,
+    fontSize: 16,
   },
 });
 

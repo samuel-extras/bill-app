@@ -2,46 +2,79 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import TransactionsForm from "../components/TransactionsForm";
+import mtn from "../assets/mtn.png";
 
 const provider = [
   {
     backgroundColor: "#45aaf2",
     image: require("../assets/airtel.png"),
-    label: "Airtel",
+    type: "Airtel",
     value: 1,
   },
   {
     backgroundColor: "#4b7bec",
     image: require("../assets/Glo_button.png"),
-    label: "GLO",
+    type: "GLO",
     value: 2,
   },
   {
     backgroundColor: "#a55eea",
     image: require("../assets/mtn.png"),
-    label: "MTN",
+    type: "MTN",
     value: 3,
   },
   {
     backgroundColor: "#778ca3",
     image: require("../assets/visafone.png"),
-    label: "VISAFONE",
+    type: "VISAFONE",
     value: 4,
   },
   {
     backgroundColor: "#778ca3",
     image: require("../assets/9mobile.png"),
-    label: "9MOBILE",
+    type: "9MOBILE",
     value: 5,
+  },
+];
+
+const recents = [
+  {
+    value: 1,
+    label: "09033728282",
+    image: mtn,
+  },
+  {
+    value: 2,
+    label: "09033728282",
+    image: mtn,
+  },
+  {
+    value: 3,
+    label: "09033728282",
+    image: mtn,
+  },
+  {
+    value: 4,
+    label: "09033728282",
+    image: mtn,
+  },
+  {
+    value: 5,
+    label: "09033728282",
+    image: mtn,
   },
 ];
 
 const Airtime = (props) => {
   return (
-    <TransactionsForm
-      providers={provider}
-      placeholder="Beneficiary Phone Number"
-    />
+    <React.Fragment>
+      <TransactionsForm
+        providers={provider}
+        placeholder="Beneficiary Phone Number"
+        labels={["Network", "Phone Number"]}
+        recents={recents}
+      />
+    </React.Fragment>
   );
 };
 const styles = StyleSheet.create({

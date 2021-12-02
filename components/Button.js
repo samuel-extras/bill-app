@@ -1,9 +1,11 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 const Button = ({
   borderRadius = 5,
+  icon,
   title,
   onPress,
   color = "primary",
@@ -18,7 +20,7 @@ const Button = ({
         styles.button,
         {
           backgroundColor: colors[color],
-          borderColor: colors.white,
+          borderColor: colors.lighterGray,
           borderWidth: bordered ? 1 : 0,
           borderRadius: borderRadius,
         },
@@ -26,6 +28,9 @@ const Button = ({
       ]}
       onPress={onPress}
     >
+      {icon && (
+        <MaterialCommunityIcons name={icon} color={colors.primary} size={20} />
+      )}
       <Text style={[styles.title, { color: textColor }]}>{title}</Text>
     </TouchableOpacity>
   );
@@ -39,11 +44,13 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 10,
     elevation: 1,
+    flexDirection: "row",
   },
   title: {
     fontSize: 15,
     fontWeight: "bold",
     textTransform: "capitalize",
+    marginLeft: 10,
   },
 });
 

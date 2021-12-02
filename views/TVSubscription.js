@@ -7,31 +7,36 @@ const provider = [
   {
     backgroundColor: "#45aaf2",
     image: require("../assets/DSTV.png"),
-    label: "DSTV Box Office Wallet Topup",
+    type: "DSTV Box Office Wallet Topup",
     value: 1,
   },
   {
     backgroundColor: "#4b7bec",
     image: require("../assets/DSTV.png"),
-    label: "DSTV Subscription",
+    type: "DSTV Subscription",
     value: 2,
   },
   {
     backgroundColor: "#a55eea",
     image: require("../assets/gotv.png"),
-    label: "Gotv",
+    type: "Gotv",
     value: 3,
   },
   {
     backgroundColor: "#a55eea",
     image: require("../assets/startime.png"),
-    label: "Startimes TV Subscription",
+    type: "Startimes TV Subscription",
     value: 4,
   },
 ];
 
 const TVSubscription = (props) => {
-  return <TransactionsForm providers={provider} />;
+  return (
+    <TransactionsForm
+      providers={provider}
+      labels={["Cable Provider", "Customer ID"]}
+    />
+  );
 };
 const styles = StyleSheet.create({
   container: {
