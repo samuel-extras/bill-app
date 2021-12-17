@@ -14,6 +14,7 @@ import Payment from "../views/Payment";
 import success from "../screens/success";
 import PaymentOptions from "../screens/PaymentOptions";
 import ResultChecker from "../views/ResultChecker";
+import Confirmation from "../screens/Confirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +53,7 @@ const ServicesNavigator = () => {
         options={({ navigation }) => ({
           headerRight: () => (
             <Button
-              onPress={() => navigation.navigate("success")}
+              onPress={() => navigation.navigate("confirm")}
               bordered
               title="Next"
               color="transparent"
@@ -74,7 +75,7 @@ const ServicesNavigator = () => {
         options={({ navigation }) => ({
           headerRight: () => (
             <Button
-              onPress={() => navigation.navigate("success")}
+              onPress={() => navigation.navigate("confirm")}
               bordered
               title="Next"
               color="transparent"
@@ -156,6 +157,7 @@ const ServicesNavigator = () => {
           ),
         }}
       />
+      <Stack.Screen name="confirm" component={Confirmation} options={{}} />
       <Stack.Screen name="success" component={success} options={{}} />
     </Stack.Navigator>
   );

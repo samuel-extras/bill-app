@@ -12,8 +12,15 @@ const FormPicker = ({
   PickerItemComponent,
   placeholder,
   width,
+  onChange = () => false,
 }) => {
   const { errors, setFieldValue, touched, values } = useFormikContext();
+  // setFieldValue(name, item)
+  // console.log(values);
+  const handleOnChange = (item) => {
+    setFieldValue(name, item);
+    onChange(item);
+  };
 
   return (
     <React.Fragment>
@@ -21,7 +28,7 @@ const FormPicker = ({
       <Picker
         items={items}
         numColumns={numColumns}
-        onSelectItem={(item) => setFieldValue(name, item)}
+        onSelectItem={(item) => handleOnChange(item)}
         PickerItemComponent={PickerItemComponent}
         placeholder={placeholder}
         selectedItem={values[name]}

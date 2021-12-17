@@ -23,12 +23,7 @@ const provider = [
     type: "MTN",
     value: 3,
   },
-  {
-    backgroundColor: "#778ca3",
-    image: require("../assets/visafone.png"),
-    type: "VISAFONE",
-    value: 4,
-  },
+
   {
     backgroundColor: "#778ca3",
     image: require("../assets/9mobile.png"),
